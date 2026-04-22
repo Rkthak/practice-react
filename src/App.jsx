@@ -1,14 +1,11 @@
-import { Component } from "react";
-import Header from "./components/Header";
+import React, { Component } from "react";
+import Counter from "./componets/class-components/Counter";
 
-class App extends Component {
+export class App extends Component {
   render() {
-    let name = "Rajkumar",
-      age = 25;
     return (
       <div>
-        <h1>App</h1>
-        <Header name={name} age={age} />
+        <Counter />
       </div>
     );
   }
