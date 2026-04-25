@@ -25,8 +25,13 @@ const Likes = () => {
   return (
     <>
       <h1>Likes: {likes}</h1>
-      <button onClick={likeHandler}>Like</button> &nbsp;
-      <button onClick={handleDislike}>dislike</button>
+      <button onClick={likeHandler}>
+        <span class="material-symbols-outlined">thumb_up</span>
+      </button>
+      &nbsp;
+      <button onClick={handleDislike}>
+        <span class="material-symbols-outlined">thumb_down</span>
+      </button>
     </>
   );
 };
