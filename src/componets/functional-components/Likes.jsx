@@ -9,28 +9,39 @@
 import { useState } from "react";
 
 const Likes = () => {
-  let [likes, setLikes] = useState(0);
+  let [reactions, setReactions] = useState({
+    likes: 0,
+    dislikes: 0,
+  });
 
+  // when the like button is clicked, it will call likeHandler function
   const likeHandler = () => {
-    setLikes(likes + 1);
+    setReactions({
+      ...reactions,
+      likes: reactions.likes + 1,
+    });
   };
 
   const handleDislike = () => {
-    setLikes(likes == 0 ? 0 : likes - 1);
+    setReactions({
+      ...reactions,
+      dislikes: reactions.dislikes + 1,
+    });
   };
 
-  console.log(`likes:${likes}`);
+  console.log(`likes: ${reactions.likes} dislikes: ${reactions.dislikes}`);
 
-  // when the like button is clicked, it will call likeHandler function
   return (
     <>
-      <h1>Likes: {likes}</h1>
+      {/* <h1>Likes: {reactions.like}</h1> */}
       <button onClick={likeHandler}>
-        <span class="material-symbols-outlined">thumb_up</span>
+        <span className="material-symbols-outlined">thumb_up</span>{" "}
+        {reactions.likes}
       </button>
       &nbsp;
       <button onClick={handleDislike}>
-        <span class="material-symbols-outlined">thumb_down</span>
+        <span className="material-symbols-outlined">thumb_down</span>{" "}
+        {reactions.dislikes}
       </button>
     </>
   );
