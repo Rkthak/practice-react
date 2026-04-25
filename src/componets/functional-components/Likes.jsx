@@ -14,12 +14,15 @@ const Likes = () => {
     dislikes: 0,
   });
 
+  const [history, setHisttory] = useState([]);
+
   // when the like button is clicked, it will call likeHandler function
   const likeHandler = () => {
     setReactions({
       ...reactions,
       likes: reactions.likes + 1,
     });
+    setHisttory([...history, "L"]);
   };
 
   const handleDislike = () => {
@@ -27,9 +30,8 @@ const Likes = () => {
       ...reactions,
       dislikes: reactions.dislikes + 1,
     });
+    setHisttory([...history, "D"]);
   };
-
-  console.log(`likes: ${reactions.likes} dislikes: ${reactions.dislikes}`);
 
   return (
     <>
@@ -43,6 +45,11 @@ const Likes = () => {
         <span className="material-symbols-outlined">thumb_down</span>{" "}
         {reactions.dislikes}
       </button>
+      <ul>
+        {history.map((item, index) => {
+          return <li key={index}>{item}</li>;
+        })}
+      </ul>
     </>
   );
 };
