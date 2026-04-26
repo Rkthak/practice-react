@@ -1,24 +1,35 @@
 import React, { Component } from "react";
+import { FaThumbsUp } from "react-icons/fa";
+import { FaThumbsDown } from "react-icons/fa";
 
 export class Counter extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      likes: 0,
-    };
-  }
+  state = {
+    like: 0,
+    dislike: 0,
+  };
   handleLike = () => {
     this.setState({
-      likes: this.state.likes + 1,
+      ...this.state,
+      like: this.state.like + 1,
+    });
+  };
+
+  handleDisLike = () => {
+    this.setState({
+      ...this.state,
+      dislike: this.state.dislike + 1,
     });
   };
 
   render() {
     return (
       <div>
-        likes : {this.state.likes}
-        <button onClick={this.handleLike}>like</button>{" "}
+        <button onClick={this.handleLike}>
+          <FaThumbsUp /> {this.state.like}
+        </button>{" "}
+        <button onClick={this.handleDisLike}>
+          <FaThumbsDown /> {this.state.dislike}
+        </button>{" "}
       </div>
     );
   }
