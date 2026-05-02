@@ -1,12 +1,13 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const Likes = () => {
   const [recipes, setRecipe] = useState([]);
 
   useEffect(() => {
-    fetch("https://69f598aafb098eb7f0b55dc2.mockapi.io/recipe")
-      .then((reponse) => reponse.json())
-      .then((data) => setRecipe(data))
+    axios
+      .get("https://69f598aafb098eb7f0b55dc2.mockapi.io/recipe")
+      .then((data) => setRecipe(data.data))
       .catch((error) => console.log(error));
   }, []);
 
