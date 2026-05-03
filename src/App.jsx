@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Likes from "./componets/functional-components/Likes";
+import Reducer from "./componets/functional-components/Reducer";
 
 export class App extends Component {
   render() {
     return (
       <div>
-        <Likes />
+        <Reducer />
       </div>
     );
   }
