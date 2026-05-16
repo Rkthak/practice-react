@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import HomeWrapper from "./wrapper/HomeWrapper";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -25,12 +26,8 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/code-kata",
-    element: <h1>code kata page</h1>,
-  },
-  {
-    path: "/sql-kata",
-    element: <h1>SQL kata page</h1>,
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 ]);
 
