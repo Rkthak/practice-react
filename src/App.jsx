@@ -5,6 +5,8 @@ import HomeWrapper from "./wrapper/HomeWrapper";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import productLoader from "./wrapper/productLoader";
+import Loader from "./pagesComps/Loader";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,8 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    loader: productLoader,
+    hydrateFallbackElement: <Loader />,
   },
 ]);
 
