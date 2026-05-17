@@ -8,7 +8,6 @@ import Dashboard from "./pages/Dashboard";
 import productLoader from "./wrapper/productLoader";
 import Loader from "./pagesComps/Loader";
 import ProductDetails from "./pagesComps/ProductDetails";
-import oneProductLoader from "./wrapper/oneProductLoader";
 
 const router = createBrowserRouter([
   {
@@ -38,8 +37,6 @@ const router = createBrowserRouter([
   {
     path: "/product",
     element: <ProductDetails />,
-    loader: oneProductLoader,
-    hydrateFallbackElement: <Loader />,
   },
 ]);
 
