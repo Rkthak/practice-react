@@ -13,7 +13,6 @@ const Dashboard = () => {
   // });
 
   const products = useLoaderData();
-  console.log(products);
 
   return (
     <div className="container m-auto p-2">

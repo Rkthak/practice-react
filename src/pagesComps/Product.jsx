@@ -8,7 +8,7 @@ const Product = ({ products }) => {
       {products.length > 0 ? (
         products.map((product) => (
           <li key={product.id}>
-            <Link to={`/products/${product.id}`}>{product.name}</Link>
+            <Link to={`/product?id=${product.id}`}>{product.name}</Link>
           </li>
         ))
       ) : (

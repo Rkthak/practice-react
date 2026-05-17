@@ -36,7 +36,7 @@ const router = createBrowserRouter([
     hydrateFallbackElement: <Loader />,
   },
   {
-    path: "/products/:id",
+    path: "/product",
     element: <ProductDetails />,
     loader: oneProductLoader,
     hydrateFallbackElement: <Loader />,

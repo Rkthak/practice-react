@@ -5,7 +5,9 @@ const ProductDetails = () => {
   return (
     <>
       <h1>ProductDetails</h1>
-      <p> {product.name} </p>
+      <p>
+        {product.name} {product.id}
+      </p>
     </>
   );
 };
