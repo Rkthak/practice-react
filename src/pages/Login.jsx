@@ -9,7 +9,7 @@ const Login = () => {
     const message = `Logging In....`;
     setRegisterMessage(message);
     setTimeout(() => {
-      navigate("/dashboard");
+      navigate("/products");
     }, 1000);
   };
   return (
