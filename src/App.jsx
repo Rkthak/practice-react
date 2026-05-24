@@ -1,47 +1,41 @@
-import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router";
-import Home from "./pages/Home";
-import HomeWrapper from "./wrapper/HomeWrapper";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import productLoader from "./wrapper/productLoader";
-import Loader from "./pagesComps/Loader";
-import ProductDetails from "./pagesComps/ProductDetails";
+import { useDispatch, useSelector } from "react-redux";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomeWrapper />,
-    children: [
-      {
-        path: "",
-        element: <Home />,
-      },
-      {
-        path: "register",
-        element: <Register />,
-      },
-      {
-        path: "login",
-        element: <Login />,
-      },
-    ],
-  },
-  {
-    path: "/products",
-    element: <Dashboard />,
-    loader: productLoader,
-    hydrateFallbackElement: <Loader />,
-  },
-  {
-    path: "/product",
-    element: <ProductDetails />,
-  },
-]);
+import {
+  selectDislikes,
+  selectLikes,
+  selectReactions,
+  setDislikes,
+  setLikes,
+  setReactions,
+} from "./Redux/Features/reactionSlice";
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  const likes = useSelector(selectLikes);
+  const dispatch = useDispatch();
+
+  const dislikes = useSelector(selectDislikes);
+
+  const reactions = useSelector(selectReactions);
+
+  const handleLikes = () => {
+    dispatch(setLikes());
+    dispatch(setReactions("LIKE"));
+  };
+
+  const handleDislikes = () => {
+    dispatch(setDislikes());
+    dispatch(setReactions("DISLIKE"));
+  };
+
+  return (
+    <div>
+      <h1>Likes: {likes}</h1>
+      <button onClick={handleLikes}>Like</button> &nbsp;
+      <h1>Dislikes: {dislikes}</h1>
+      <button onClick={handleDislikes}>Dislike</button>
+      <h1>Reactions: </h1> {reactions.join(", ")}
+    </div>
+  );
 };
 
 export default App;
