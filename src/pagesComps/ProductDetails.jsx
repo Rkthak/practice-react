@@ -1,19 +1,22 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
+import { selectProduct, setProduct } from "../Redux/Fearures/productSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
 
-  const [product, setProduct] = useState(null);
+  const product = useSelector(selectProduct);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
       .get(`https://6a083202fa9b27c848fabbf1.mockapi.io/products/${id}`)
-      .then((response) => setProduct(response.data));
-  }, [id]);
+      .then((response) => dispatch(setProduct(response.data)));
+  }, [id, dispatch]);
 
   console.log(product);
 
@@ -32,7 +35,11 @@ const ProductDetails = () => {
             </div>
 
             <div className="flex gap-6">
-              <p>{product.featured ? `⭐  ${product.material}` : product.material} </p>
+              <p>
+                {product.featured
+                  ? `⭐  ${product.material}`
+                  : product.material}{" "}
+              </p>
               <p></p>
             </div>
           </div>

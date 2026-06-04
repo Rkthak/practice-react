@@ -1,21 +1,24 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router";
+import { selectProducts, setProducts } from "../Redux/Fearures/productSlice";
 
 const Product = () => {
-  const [products, setProducts] = useState([]);
+  const products = useSelector(selectProducts);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axios
       .get("https://6a083202fa9b27c848fabbf1.mockapi.io/products")
       .then((response) => {
-        setProducts(response.data);
+        dispatch(setProducts(response.data));
       });
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
-      {products && products.length > 0  ? (
+      {products && products.length > 0 ? (
         <ul className="flex gap-8 flex-wrap">
           {" "}
           {products.map((product) => (
