@@ -1,20 +1,36 @@
-import React from "react";
-import { Link } from "react-router";
-import Loader from "./Loader";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router";
 
-const Product = ({ products }) => {
+const Product = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://6a083202fa9b27c848fabbf1.mockapi.io/products")
+      .then((response) => {
+        setProducts(response.data);
+      });
+  }, []);
+
   return (
-    <ul className="list-disc m-5">
-      {products.length > 0 ? (
-        products.map((product) => (
-          <li key={product.id}>
-            <Link to={`/product?id=${product.id}`}>{product.name}</Link>
-          </li>
-        ))
+    <>
+      {products && products.length > 0  ? (
+        <ul className="flex gap-8 flex-wrap">
+          {" "}
+          {products.map((product) => (
+            <NavLink
+              to={`/dashboard/product/${product.id}`}
+              className="min-w-fit bg-amber-100 px-4 py-1 rounded text-slate-900 font-medium"
+            >
+              <li className="">{product.name}</li>
+            </NavLink>
+          ))}
+        </ul>
       ) : (
-        <Loader />
+        <p>Loading.... </p>
       )}
-    </ul>
+    </>
   );
 };
 

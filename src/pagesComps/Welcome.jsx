@@ -3,7 +3,7 @@ import React from "react";
 const Welcome = () => {
   return (
     <>
-      <div className="container m-auto p-2">
+      <div className="p-5">
         <h1 className="text-2xl font-bold mb-2">
           Welcome the Users of my company
         </h1>

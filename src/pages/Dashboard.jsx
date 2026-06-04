@@ -1,25 +1,15 @@
-// import axios from "axios";
-// import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router";
-import Product from "../pagesComps/Product";
-import Loader from "../pagesComps/Loader";
+import { Outlet } from "react-router";
 
 const Dashboard = () => {
-  // const [products, setProducts] = useState([]);
-  // useEffect(() => {
-  //   axios
-  //     .get("https://6a083202fa9b27c848fabbf1.mockapi.io/products")
-  //     .then((response) => setProducts(response.data));
-  // });
 
-  const products = useLoaderData();
 
-  return (
-    <div className="container m-auto p-2">
-      <h1 className="text-2xl font-semibold">Products_</h1>
-      <Product products={products} />
+  return <div>
+    <div className="p-5">
+      <h2 className="text-4xl font-bold mb-1">Welcome to the Dashboard</h2>
+      <p className="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, mollitia illo autem deserunt impedit iusto molestiae iste blanditiis corporis earum?</p><br />
+      <Outlet/>
     </div>
-  );
+  </div>;
 };
 
 export default Dashboard;

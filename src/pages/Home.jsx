@@ -10,7 +10,7 @@ const Home = () => {
     navigate("/login");
   };
   return (
-    <div className="container m-auto p-2">
+    <div className="p-5">
       <button
         className="bg-red-500 px-2 py-0.5 font-medium text-white mr-7"
         onClick={gotoRegister}

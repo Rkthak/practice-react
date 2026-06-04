@@ -1,37 +1,55 @@
-import { useDispatch, useSelector } from "react-redux";
-import { selectDisLike, selectLikes, selectReaction, setDisLikes, setLikes, setreactions } from "./Redux/Fearures/reactionSlice";
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import Home from "./pages/Home";
+import HomeWrapper from "./wrapper/HomeWrapper";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Product from "./pagesComps/Product";
+import Dashboard from "./pages/Dashboard";
+import { Provider } from "react-redux";
+import store from "./Redux/App/store";
+import ProductDetails from "./pagesComps/ProductDetails";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeWrapper />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        index: true,
+        element: <Product />,
+      },
+      {
+        path: "product/:id",
+        element : <ProductDetails/>
+      }
+    ],
+  },
+]);
 
 const App = () => {
-
-  const likes = useSelector(selectLikes)
-  const dislikes = useSelector(selectDisLike)
-  const reactions = useSelector(selectReaction)
-  
-  const dispatch = useDispatch()
-
-  const handleLikes = () => {
-    dispatch(setLikes())
-    dispatch(setreactions("LIKE"));
-  }
-
-  
-  
-  const handleDisLikes = () => {
-    dispatch(setDisLikes())
-    dispatch(setreactions("DISLIKE"));
-  }
-
-  
-
   return (
-    <div>
-      <h1>Like : {likes} </h1><h1> dislike : {dislikes} </h1>
-      <button onClick={handleLikes}>Like</button> &nbsp; &nbsp;
-      <button onClick={handleDisLikes}>DisLike</button>
-
-      <h2> {reactions.join(", ")} </h2>
-    </div>
+    <Provider store={store}>
+      <RouterProvider router={router}></RouterProvider>
+    </Provider>
   );
 };
 
