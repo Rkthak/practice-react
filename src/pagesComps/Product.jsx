@@ -1,19 +1,17 @@
-import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router";
 import { selectProducts, setProducts } from "../Redux/Fearures/productSlice";
+import productAPI from "../instances/productInstance";
 
 const Product = () => {
   const products = useSelector(selectProducts);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get("https://6a083202fa9b27c848fabbf1.mockapi.io/products")
-      .then((response) => {
-        dispatch(setProducts(response.data));
-      });
+    productAPI.get("/products").then((response) => {
+      dispatch(setProducts(response.data));
+    });
   }, [dispatch]);
 
   return (

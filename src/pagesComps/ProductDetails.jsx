@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { selectProduct, setProduct } from "../Redux/Fearures/productSlice";
+import productAPI from "../instances/productInstance";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -13,8 +13,8 @@ const ProductDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(`https://6a083202fa9b27c848fabbf1.mockapi.io/products/${id}`)
+    productAPI
+      .get(`/products/${id}`)
       .then((response) => dispatch(setProduct(response.data)));
   }, [id, dispatch]);
 
