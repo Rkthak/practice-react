@@ -2,17 +2,25 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router";
 import { selectProducts, setProducts } from "../Redux/Fearures/productSlice";
-import productAPI from "../instances/productInstance";
+import productAPIcall from "../services/productAPIcall";
 
 const Product = () => {
   const products = useSelector(selectProducts);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    productAPI.get("/products").then((response) => {
-      dispatch(setProducts(response.data));
-    });
-  }, [dispatch]);
+    const fetchProducts = async () => {
+      try {
+        const data = await productAPIcall.getProducts(); 
+        dispatch(setProducts(data));
+      } catch (error) {
+       dispatch(setProducts([]))
+      }
+    };
+
+    fetchProducts();
+  }, [dispatch]); // dispatch dependency me rahega
+
 
   return (
     <>
