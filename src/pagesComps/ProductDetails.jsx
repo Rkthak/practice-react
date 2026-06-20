@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { selectProduct, setProduct } from "../Redux/Fearures/productSlice";
-import productAPIcall from "../services/productAPIcall";
+import { getProduct, selectProduct } from "../Redux/Fearures/productSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -13,18 +12,8 @@ const ProductDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const data = await productAPIcall.getProduct(id)
-        dispatch(setProduct(data))
-      } catch (error) {
-        dispatch(setProduct(null))
-      }
-    }
-    fetchProduct();
+    dispatch(getProduct(id));
   }, [id, dispatch]);
-
-  console.log(product);
 
   return (
     <>
